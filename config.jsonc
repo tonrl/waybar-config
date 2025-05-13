@@ -1,0 +1,378 @@
+//=========================================================================//
+//  __      __               ___.                 
+// /  \    /  \_____  ___.__.\_ |__ _____ _______ 
+// \   \/\/   /\__  \<   |  | | __ \\__  \\_  __ \
+//  \        /  / __ \\___  | | \_\ \/ __ \|  | \/
+//   \__/\  /  (____  / ____| |___  (____  /__|   
+//        \/        \/\/          \/     \/       
+// 
+// Waybar Configuration File
+// 
+//
+//==========================================================================//
+
+{
+        "layer": "middle",
+        "position": "top",
+        "height": 34,
+        "spacing": 2,
+        "margin-top": 0,
+        "margin-bottom": 0,
+
+        // Choose the order of the modules
+        "modules-left": [
+                "group/menuOutside",
+                "hyprland/window"
+        ],
+        "modules-center": [
+                "group/statusInfo",
+                "hyprland/workspaces",
+                "clock",
+                "mpris"
+        ],
+        "modules-right": [
+                "group/systemInfo",
+                "tray",
+                "custom/power"
+        ],
+
+        // ===================== Groups ==============================//
+
+        "group/menu": {
+                "orientation": "horizontal",
+                "drawer": {
+                       "transition-duration": 500,
+                       "children-class": "childs",
+                       "transition-left-to-right": true
+                 },
+                "modules": [
+                        "custom/rofi",
+                        "wlr/taskbar"
+                ]
+        },
+        "group/menuOutside": {
+                "orientation": "horizontal",
+                "drawer": {
+                       "transition-duration": 500,
+                       "children-class": "childs",
+                       "transition-left-to-right": true
+                 },
+                "modules": [
+                        "group/menu"
+                ]
+        },
+        "group/systemGroups": {
+                "orientation": "horizontal",
+                "drawer": {
+                       "transition-duration": 500,
+                       "children-class": "childs",
+                       "transition-left-to-right": true
+                 },
+                "modules": [
+                        "group/systemInfo",
+                        "tray"
+                ]
+        },
+
+        "group/systemInfo": {
+                "orientation": "horizontal",
+                "modules": [
+                        "network",
+                        "bluetooth",
+                        "wireplumber",
+                        "backlight",
+                        "group/powerInfo"
+                ]
+        },
+
+        "group/statusInfo": {
+                "orientation": "horizontal",
+                "modules": [
+                        "privacy",
+                        "idle_inhibitor"
+                ]
+        },
+
+        "group/powerInfo": {
+                "orientation": "horizontal",
+                 "drawer": {
+                        "transition-duration": 500,
+                        "children-class": "childs",
+                        "transition-left-to-right": false
+                 },
+                 "modules": [
+                         "battery"
+                ]
+        },
+        
+        // ================== Module Left ===============================
+
+        "custom/rofi": {
+                "format": "󰣇",
+                "tooltip": false
+        },
+        "hyprland/window": {
+                "max-length": 30,
+                "icon": true,
+                "icon-size": 14,
+                "format": "{title}",
+                "separate-outputs": true,
+                "rewrite": {
+                        "(.*) Mozilla Firefox" : "$1",
+                        "Mozilla Firefox" : "Firefox ",
+                        "(.*) - Mozilla Thunderbird" : "Thunderbird 󱃚 | $1",
+                        "vim (.*)" : "nvim $1",
+                        "~/(.*)"  : "~/$1",
+                        "/(.*)"  : "  /$1",
+                        "sudo pacman (.*)" : "  sudo pacman $1",
+                        "paru (.*)" : "  paru $1",
+                        "paru" : "  paru"
+                },
+                "on-click-right": "rofi -show window"
+        },
+        "wlr/taskbar": {
+                "format": "{icon}",
+                "tooltip-format": "{title}",
+                "icon-theme": "ePapirus-Dark",
+                "icon-size": 16,
+                "active-first": false,
+                "on-click": "activate",
+                "on-click-middle": "close",
+                "app_ids-mapping": {
+                        "firefoxnightly": "firefox-nightly"
+                },
+                "ignore-list": [
+                        "kitty"
+                ]
+        },
+
+        
+        // ===================== Module Center ===========================//
+
+        "hyprland/workspaces": {
+                "format": "{icon}",
+                "on-scroll-up": "hyprctl dispatch workspace e+1",
+                "on-scroll-down": "hyprctl dispatch workspace e-1",
+                "show-special": true,
+                "format-icons": {
+                        "1": "0",
+                        "2": "1",
+                        "3": "2",
+                        "4": "3",
+                        "5": "4",
+                        "6": "5",
+                        "7": "6",
+                        "8": "7",
+                        "9": "8",
+                        "10": "9",
+                        "active": "󰒃",
+                        "special": "S"
+                },
+                "persistent-workspaces": {
+                        "*": [ 1,2,3,4,5]
+                }
+        },
+        "privacy": {
+                "icon-spacing": 0,
+                "icon-size": 12,
+                "transition-duration": 250,
+                "modules": [
+                        {
+                                "type": "screenshare",
+                                "tooltip": true,
+                                "tooltip-icon-size": 20
+                        },
+                        {
+                                "type": "audio-in",
+                                "tooltip": true,
+                                "tooltip-icon-size": 20
+                        },
+                        {
+                                "type": "audio-out",
+                                "tooltip": true,
+                                "tooltip-icon-size": 20
+                        }
+                ]       
+        },
+        "idle_inhibitor": {
+                "format": "{icon} ",
+                "tooltip": true,
+                "start-activated" : true,
+                "format-icons": {
+                        "activated": "",
+                        "deactivated": ""
+                        // "activated": "",
+                        // "deactivated": ""
+                }
+        },
+        "mpris": {
+                "format": "{player_icon} Playing" ,
+                "tooltip-format": "{status_icon} {dynamic}",
+                "tooltip-format-paused": "{status_icon} {status} {dynamic}",
+                "format-paused":  "{status_icon} {position}",
+                "on-click": "playerctl play-pause",
+                "on-click-right":"playerctl stop",
+                "player-icons": {
+                        "default": "",
+                        "mpv": ""
+                },
+                "status-icons": {
+                        "playing": "",
+                        "paused": "",
+                        "stopped": ""
+                }
+                // "ignored-players": ["firefox"]
+        },
+        "clock" : {
+                "format": "{:%H:%M %Z・%d.%m}",
+                "format-alt": "{:%a, %d. %b %Y}",
+                "locale": "de_DE.UTF-8",
+                "tooltip-format": "<span size='12pt'>{calendar}</span>",
+                "calendar": {
+                        "on-scroll" : 1,
+                        "on-click-right": "mode",
+                        "mode": "month",
+                        "mode-mon-col": 3,
+                        "format": {
+                                "months": "<span color='#b4c6d0'><b>{}</b></span>",
+                                "days": "<span color='#b4c6d0'><b>{}</b></span>",
+                                "weeks": "<span color='#7e8a91'><b>W{}</b></span>",
+                                "weekdays": "<span color='#7e8a91'><b>{}</b></span>",
+                                "today": "<span color='#ff6699'><b>{}</b></span>"
+                        }
+                },
+                "timezones": [
+                        "",
+                        "Australia/South"
+                ],
+                "actions": {
+                        "on-click-right": "mode",
+                        "on-scroll-up": "tz_up",
+                        "on-scroll-down": "tz_down"
+                }
+        },
+
+        // ====================== Module Right ============================//
+        "battery": {
+                "format": "{capacity}% {icon}",
+                "interval": 10,
+                "format-charging": "{capacity}% ",
+                "format-plugged": "{capacity}% ",
+                "format-warning": "{capacity}% ",
+                "format-alt": "{time} {icon}",
+                "format-plugged-alt": "{time} {icon}",
+                "format-charging-alt": "{time} {icon}",
+                // "full-at": 85,
+                "states": {
+                        "warning": 40,
+                        "critical": 10
+                },
+                "format-icons": [
+                        "󱃍",
+                        "󰁺",
+                        "󰁻",
+                        "󰁼",
+                        "󰁽",
+                        "󰁾",
+                        "󰁿",
+                        "󰂀",
+                        "󰂁",
+                        "󰂂",
+                        "󰁹"
+                ]
+        },
+        "network": {
+                // "format-wifi": "{essid}   ({signalStrength}%)",
+                "format-wifi": "{essid} {icon}",
+                "format-ethernet": "{ifname} 󰈀",
+                "format-linked": "{ifname} 󰲜 (No IP)",
+                "format-disconnected": "Disconnected ",
+                "format-disabled": "Disconnected ",
+                "format-alt": "{ifname}: {ipaddr}/{cidr}",
+                "tooltip-format": "{ifname}: {ipaddr}",
+                "tooltip-format-wifi": "{icon} ({signalStrength}%) {ipaddr}",
+                "tooltip-format-ethernet": "󰈀 {ipaddr}",
+                "tooltip-format-disconnected": "Disconnected",
+                "tooltip-format-disabled": "Disconnected",
+                "family": "ipv4",
+                "format-icons": [
+                        "󰤟",
+                        "󰤢",
+                        "󰤢",
+                        "󰤨"
+                ],
+                "max-length": 50,
+                "on-click-right": "nm-connection-editor"
+                // "on-click-right": "iwgtk"
+        },
+        "wireplumber": {
+                "scroll-step": 1, // %, can be a float
+                "format": "{volume}% {icon}",
+                "format-bluetooth": "{volume}% {icon}",
+                "format-bluetooth-muted": "Aus {icon}󰂲",
+                "format-muted": "Aus 󰖁",
+                "format-source": " {volume}% ",
+                "format-source-muted": "",
+                "format-icons": {
+                        "headphone": " ",
+                        "hands-free": " ",
+                        "headset": " ",
+                        "phone": " ",
+                        "portable": " ",
+                        "car": " ",
+                        // "default": ["󰸊","󱡕","󰖌"]
+                        "default": ["", "", "", "", "", "", "", "", ""]
+
+                },
+                "on-click": "$HOME/.config/hypr/scripts/volume.sh mute",
+                "on-click-right": "pwvucontrol",
+                "on-scroll-up": "/home/schlau/.config/hypr/scripts/volume.sh up",
+                "on-scroll-down": "/home/schlau/.config/hypr/scripts/volume.sh down",
+                "max-volume": "100%",
+                "tooltip-format": "{node_name}\nVolume: {volume}%  "
+        },
+        "tray": {
+                "icon-size": 12,
+                "spacing": 5
+        },
+        "backlight": {
+                // "device": "acpi_video1",
+                "format": "{percent}% {icon}",
+                "tooltip-format": "Backlight: {percent}% {icon}",
+                // "format-icons": ["", "", "", "", "", "", "", "", ""]
+                // "format-icons": ["󱩍", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩕","󱩖","󰛨"],
+                "format-icons": ["󰃞","󰃝","󰃟","󰃠"],
+                "on-click": "night_mode",
+                "on-click-right": "/home/schlau/.config/hypr/scripts/sunset.sh off",
+                "on-scroll-up": "/home/schlau/.config/hypr/scripts/backlight.sh up",
+                "on-scroll-down": "/home/schlau/.config/hypr/scripts/backlight.sh down"
+        },
+        "custom/power": {
+                "format": "",
+                "tooltip": true,
+                "tooltip-format": "Shutdown",
+                "on-click": "wlogout"
+        },
+        "bluetooth": {
+                "format": "{status} ",
+                "format-disabled": "",
+                "format-no-controller": "",
+                "format-connected": "{device_alias} ",
+                "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+                "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+                "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+                "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+                "on-click-right": "overskride",
+                "on-click": "/home/schlau/.config/hypr/scripts/bluetooth.sh"
+        },
+        "upower": {
+                "show-icon": true,
+                "icon-size": 18,
+                "hide-if-empty": false,
+                "tooltip": true,
+                "tooltip-spacing": 20
+        }
+
+
+}
+

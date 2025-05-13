@@ -1,0 +1,499 @@
+* {
+        border: none;
+        font-family: JetBrainsMono Nerd Font;
+        font-weight: bold;
+        font-size: 10px;
+        min-height: 0;
+        padding-bottom: 0px;
+        padding-top: 0px;
+}
+
+window#waybar {
+        border-bottom: 0px solid rgba(0,4,26,0.8);
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+	background: @waybar-bg;
+}
+
+window#waybar.hidden {
+        opacity: 0.2;
+}
+
+window#waybar.empty #window {
+        background-color: transparent;
+        box-shadow: inherit;
+        border-color:transparent;
+
+}
+
+tooltip {
+        border-radius: 5px;
+        background-color: @tooltip_bg;
+}
+
+tooltip label {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        color: #b4c6d0;
+}
+
+button {
+        /* Use box-shadow instead of border so the text isn't offset */
+        /* box-shadow: inset 0 -3px transparent; */
+        /* Avoid rounded borders under each button name */
+        border: none;
+        border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+        /* background: inherit; */
+        /* border-bottom: 3px solid transparent; */
+        /* box-shadow: inset 0px -2px #8391A1; */
+}
+
+#workspaces {
+        margin-left: 2px;
+        margin-right: 0px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding: 0px 1px;
+        border-radius: 8px;
+        background-color: @def_background;
+}
+
+#workspaces button {
+        margin: 0px 3px;
+        padding: 2px 2px;
+        box-shadow: inherit;
+        border-radius: 15px;
+        font-size: 2px;
+        border: 2px;
+        background: @workspaces_button_bg;
+        color: @workspace_button_text;
+}
+
+#workspaces button:hover {
+        background-color: rgba(75,0,130,0.7);
+        margin-top: 2px;
+        margin-bottom: 2px;
+        padding: 0px;
+        border-style: solid;
+        color: #CCFFDD;
+        border-color: @waybar_border;
+}
+
+/*Hyprland Specific*/
+#workspaces button.active {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        border-radius: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
+        min-width: 31px;
+        color: @workspace_active_button_text;
+        background-color: @workspace_active_button_bg;
+}
+
+#workspaces button.active:hover {
+        background-color: rgba(75,0,130,0.5);
+        padding-left: 0px;
+        padding-right: 0px;
+        /* padding-left: 0px; */
+}
+
+#workspaces button.special {
+        color: #08c6d3;
+}
+#workspaces button.special.active {
+        background-color: rgba(75,0,130,0.5);
+}
+/*Hyprland*/
+
+#mode {
+        border-radius: 25px;
+}
+
+#window,
+#clock,
+#battery,
+#backlight,
+#network,
+#wireplumber,
+#tray,
+#mode,
+#scratchpad,
+#bluetooth,
+#mode {
+        padding-left: 4px;
+        padding-right: 6px;
+
+}
+
+#window {
+        border-radius: 8px;
+        margin-left: 0px;
+        margin-top: 5.2px;
+        margin-bottom: 5.2px;
+        padding-left: 4px;
+        background: transparent;
+        border: 0px;
+        border-style: solid;
+        border-color: transparent;
+        color: @def_text_color;
+}
+
+#window:hover {
+        border-bottom: 1px;
+        border-style: solid;
+        border-color: transparent;
+        color: #fff;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+        margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+        margin-right: 0;
+}
+
+#idle_inhibitor {
+        color: @clock_text_color;
+}
+
+#clock {
+        margin-left: 2px;
+        margin-right: 2px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding: 1px;
+        padding-top: 1px;
+        padding-left: 8px;
+        padding-right: 8px;
+        color: @clock_text_color;
+        background: @def_background;
+        border-radius: 8px;
+        /* border: 1.5px; */
+}
+
+#clock:hover {
+        color: #ffc777;
+}
+
+#battery {
+        /* padding-right: 5px; */
+        /* padding-left: 3px; */
+        border-radius: 5px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        background-color: transparent;
+        color: @battery_def;
+
+}
+
+#battery.charging, #battery.plugged {
+        /* background: rgba(23,48,40,0.5); */
+        /* color: #4fd6be; */
+        padding-right: 8.5px;
+        background: transparent;
+        color: @battery_charging;
+}
+#battery.warning {
+        color: #ec9706;
+}
+
+#battery.critical:not(.charging) {
+        color: #f53c3c;
+        animation-name: blink;
+        animation-duration: 0.5s;
+        animation-timing-function: steps(12);
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+}
+
+
+label:focus {
+        background-color: #000000;
+}
+
+
+#backlight {
+        /*	margin: 3px 0px 3px 0px; */
+        padding-right: 8px;
+        border-radius: 5px;
+        border: 0px;
+        border-style: solid;
+        border-color:#4c4561;
+        background: transparent;
+        color: @backlight_color;
+
+}
+
+#backlight:hover {
+        background: rgba(144,177,177,0.2);
+}
+
+#network {
+        padding-left: 6px;
+        /* padding-right: 8px; */
+        border-radius: 5px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background: transparent;
+        color: @colour_network;
+}
+#network.wifi {
+        color: @colour_network;
+}
+
+#network.disabled,
+#network.disconnected {
+        color: red;
+}
+
+#bluetooth {
+        padding-right: 4px;
+        border-radius: 5px;
+        color: @def_text_color;
+}
+
+#bluetooth.on,
+#bluetooth.connected {
+        color: #21d375;
+}
+
+#wireplumber {
+        border-radius: 5px;
+        border: 0px;
+        border-style: solid;
+        border-color:#4c4561;
+        background: transparent;
+        color: @wp_color;
+}
+
+#wireplumber.muted {
+        background: rgba(144,177,177,0.1);
+        padding-right: 8px;
+        color: @wp_muted;
+}
+
+#wireplumber:hover {
+        background: rgba(144,177,177,0.2);
+}
+
+#tray {
+        margin-left: 2px;
+        margin-right: 2px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 5px;
+        padding-right: 5px;
+        color: #C4C4C4;
+        border-radius: 8px;
+        background: @def_background;
+
+}
+
+#tray:hover {
+        background: @hover_transparent;
+}
+
+#tray > .active {
+        /* color: rgba(144,177,177,0.2); */
+        border-radius: 5px;
+}
+
+#tray > .passive {
+        -gtk-icon-effect: dim;
+        border-radius: 5px;
+}
+
+#tray > .needs-attention {
+        -gtk-icon-effect: highlight;
+        background-color: rgba(144,177,177,0.2);
+        border-radius: 5px;
+}
+
+#custom-power {
+        margin: 4px 3px 4px 0px;
+        margin-left: 0px;
+        border-radius: 8px;
+        padding-left: 10px;
+        padding-right: 12px;
+        border: 0px;
+        border-style: solid;
+        border-color:#4c4561;
+        background: @def_background;
+        color: @custom_power_text;
+}
+
+#keyboard-state {
+        margin-left: 4px;
+        margin-right: 5px;
+        color: #ebdbb2;
+
+}
+
+#keyboard-state label.capslock.locked {
+        color: #ffa500;
+}
+
+
+#custom-rofi {
+        padding-left: 7px;
+        padding-right: 10px;
+        padding-top: 0px;
+        border-radius: 15px;
+        color: #1793d1;
+        font-size: 15px;
+        background: transparent;
+
+}
+
+#privacy-item.audio-in {
+        /* color: #FF007C; */
+        margin-right: 5px;
+        color: @pv_audio_in_fg;
+}
+#privacy-item.audio-out {
+        margin-right: 5px;
+        color: @pv_audio_out_fg;
+}
+
+#privacy-item.screenshare {
+        margin-right: 5px;
+        color: @pv_screen_fg;
+}
+
+#privacy-item.audio-in:hover,
+#privacy-item.screenshare:hover {
+        color: #7aa2f7;
+}
+
+#privacy:hover {
+        color: #7aa2f7;
+}
+
+#mpris {
+        color: #c0caf5;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding: 1px;
+        padding-top: 1px;
+        padding-left: 8px;
+        padding-right: 8px;
+        border-radius: 8px;
+        /* border: 1.5px; */
+        background-color: @def_background;
+}
+
+#mpris.firefox {
+        color : @mpris_firefox;
+}
+
+#mpris.chromium {
+        color: @mpris_chromium;
+}
+
+#mpris.mpv {
+        color: @mpris_chromium;
+
+}
+#mpris.chromium.paused,
+#mpris.firefox.paused,
+#mpris.mpv.paused,
+#mpris.paused {
+        color : #ff007c;
+}
+
+#mpris:hover,
+#mpris.firefox:hover,
+#mpris.chromium:hover {
+        color: #ffc777;
+        background:  @hover_transparent;
+}
+
+#taskbar {
+        padding-right: 0px;
+}
+
+#taskbar button {
+        padding-left: 6px;
+        padding-right: 0px;
+        background: none;
+}
+
+#taskbar button:hover {
+        border-bottom: 4px solid transparent;
+        box-shadow: none;
+        text-shadow: none;
+}
+/* Hover effect */
+
+#window:hover,
+#custom-power:hover,
+#custom-rofi:hover {
+        background: @hover_transparent;
+}
+
+#wireplumber:hover,
+#backlight:hover,
+#battery:hover,
+#network:hover,
+#bluetooth:hover {
+        border-bottom: 2.5px solid transparent;
+        background: @def_hover_bg;
+}
+
+#mpris:hover,
+#clock:hover {
+        border-bottom: 2.5px solid transparent;
+        background: @hover_transparent;
+}
+
+
+/* Groups config */
+
+.modules-left {
+        color: transparent;
+}
+
+#systemInfo {
+        margin-right: 0px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding-left: 0px;
+        padding-right: 0px;
+        color: #C4C4C4;
+        background-color: @def_background;
+        border-radius: 8px;
+
+}
+
+#statusInfo {
+        margin-right: 0px;
+}
+
+#menu {
+        margin-right: 0px;
+}
+
+#menuOutside {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        margin-left: 3px;
+        border-radius: 15px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        margin-right: 3px;
+}
+#menuOutside:hover {
+        /* border-radius: 25px; */
+        background: @def_background;
+}
+
