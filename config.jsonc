@@ -243,7 +243,8 @@
                 },
                 "timezones": [
                         "",
-                        "Australia/South"
+                        "Australia/South",
+                        "America/New_York"
                 ],
                 "actions": {
                         "on-click-right": "mode",
