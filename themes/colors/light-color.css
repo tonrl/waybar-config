@@ -29,6 +29,9 @@
 /* Color Network Module */
 @define-color colour_network rgba(0, 0, 82, 1);
 
+/*Bluetooth*/
+@define-color bluetooth_text_color rgba(82, 0, 0, 0.2);
+
 /* Wireplumber Module */
 @define-color wp_color rgba(82, 0, 0, 1);
 @define-color wp_muted rgba(82, 0, 0, 0.2);

@@ -29,6 +29,9 @@
 /* Color Network Module */
 @define-color colour_network #00b4d8;
 
+/* Bluetooth*/
+@define-color bluetooth_text_color #b4c6d0;
+
 /* Wireplumber Module */
 @define-color wp_color #ff757f;
 @define-color wp_muted #a3b8c8;

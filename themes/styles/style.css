@@ -257,7 +257,7 @@ label:focus {
 #bluetooth {
         padding-right: 4px;
         border-radius: 5px;
-        color: @def_text_color;
+        color: @bluetooth_text_color;
 }
 
 #bluetooth.on,
@@ -331,6 +331,11 @@ label:focus {
         background: @def_background;
         color: @custom_power_text;
 }
+
+#custom-power:hover {
+        border-bottom: 2.5px solid transparent;
+}
+
 
 #keyboard-state {
         margin-left: 4px;

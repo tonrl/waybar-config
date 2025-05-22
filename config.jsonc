@@ -118,7 +118,7 @@
                 "format": "{title}",
                 "separate-outputs": true,
                 "rewrite": {
-                        "(.*) Mozilla Firefox" : "$1",
+                        "(.*) Mozilla Firefox" : "$1 Firefox",
                         "Mozilla Firefox" : "Firefox ",
                         "(.*) - Mozilla Thunderbird" : "Thunderbird 󱃚 | $1",
                         "vim (.*)" : "nvim $1",
@@ -259,27 +259,33 @@
                 "interval": 10,
                 "format-charging": "{capacity}% ",
                 "format-plugged": "{capacity}% ",
-                "format-warning": "{capacity}% ",
+                "format-warning": "{capacity}% {icon}",
+                "format-critical": "{capacity}% ",
                 "format-alt": "{time} {icon}",
                 "format-plugged-alt": "{time} {icon}",
                 "format-charging-alt": "{time} {icon}",
+                // "tooltip-format": "Akku bei {capacity}%",
                 // "full-at": 85,
                 "states": {
-                        "warning": 40,
-                        "critical": 10
+                        "warning": 30,
+                        "critical": 15
                 },
                 "format-icons": [
-                        "󱃍",
-                        "󰁺",
-                        "󰁻",
-                        "󰁼",
-                        "󰁽",
-                        "󰁾",
-                        "󰁿",
-                        "󰂀",
-                        "󰂁",
-                        "󰂂",
-                        "󰁹"
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
                 ]
         },
         "network": {
@@ -288,7 +294,7 @@
                 "format-ethernet": "{ifname} 󰈀",
                 "format-linked": "{ifname} 󰲜 (No IP)",
                 "format-disconnected": "Disconnected ",
-                "format-disabled": "Disconnected ",
+                "format-disabled": "Disabled ",
                 "format-alt": "{ifname}: {ipaddr}/{cidr}",
                 "tooltip-format": "{ifname}: {ipaddr}",
                 "tooltip-format-wifi": "{icon} ({signalStrength}%) {ipaddr}",
@@ -297,6 +303,7 @@
                 "tooltip-format-disabled": "Disconnected",
                 "family": "ipv4",
                 "format-icons": [
+                        "󰤯",
                         "󰤟",
                         "󰤢",
                         "󰤢",
@@ -326,7 +333,7 @@
 
                 },
                 "on-click": "$HOME/.config/hypr/scripts/volume.sh mute",
-                "on-click-right": "pwvucontrol",
+                "on-click-right": "uwsm app pwvucontrol",
                 "on-scroll-up": "/home/schlau/.config/hypr/scripts/volume.sh up",
                 "on-scroll-down": "/home/schlau/.config/hypr/scripts/volume.sh down",
                 "max-volume": "100%",
@@ -340,9 +347,7 @@
                 // "device": "acpi_video1",
                 "format": "{percent}% {icon}",
                 "tooltip-format": "Backlight: {percent}% {icon}",
-                // "format-icons": ["", "", "", "", "", "", "", "", ""]
-                // "format-icons": ["󱩍", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩕","󱩖","󰛨"],
-                "format-icons": ["󰃞","󰃝","󰃟","󰃠"],
+                "format-icons": ["󰃞","󰃟","󰃝","󰃠"],
                 "on-click": "night_mode",
                 "on-click-right": "/home/schlau/.config/hypr/scripts/sunset.sh off",
                 "on-scroll-up": "/home/schlau/.config/hypr/scripts/backlight.sh up",
@@ -363,8 +368,8 @@
                 "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
                 "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
                 "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-                "on-click-right": "overskride",
-                "on-click": "/home/schlau/.config/hypr/scripts/bluetooth.sh"
+                "on-click-right": "uwsm app overskride",
+                "on-click": "uwsm app /home/schlau/.config/hypr/scripts/bluetooth.sh"
         },
         "upower": {
                 "show-icon": true,
