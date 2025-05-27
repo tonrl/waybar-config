@@ -39,6 +39,12 @@
 /*Back light*/
 @define-color backlight_color rgba(82, 0, 82, 1);
 
+/* CPU */
+@define-color cpu_text_color  #1e2d09;
+
+/* Memory */
+@define-color mem_text_color #2d1809;
+
 /* Battery */
 @define-color battery_def rgba(0, 0, 48, 1);
 @define-color battery_charging rgba(0, 82, 0, 1);

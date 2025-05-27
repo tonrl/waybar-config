@@ -12,7 +12,9 @@ window#waybar {
         border-bottom: 0px solid rgba(0,4,26,0.8);
         border-top-left-radius: 0px;
         border-bottom-left-radius: 0px;
-	background: @waybar-bg;
+	background-color: @waybar-bg;
+        transition-property: background-color;
+        transition-duration: .5s;
 }
 
 window#waybar.hidden {
@@ -59,6 +61,7 @@ button:hover {
         margin-bottom: 4px;
         padding: 0px 1px;
         border-radius: 8px;
+        /* transition: all 100s ease-in-out; */
         background-color: @def_background;
 }
 
@@ -69,17 +72,18 @@ button:hover {
         border-radius: 15px;
         font-size: 2px;
         border: 2px;
+        transition: all 1s ease-in-out;
         background: @workspaces_button_bg;
         color: @workspace_button_text;
 }
 
 #workspaces button:hover {
-        background-color: rgba(75,0,130,0.7);
         margin-top: 2px;
         margin-bottom: 2px;
         padding: 0px;
         border-style: solid;
         color: #CCFFDD;
+        background-color: rgba(75,0,130,0.7);
         border-color: @waybar_border;
 }
 
@@ -124,6 +128,9 @@ button:hover {
 #mode,
 #scratchpad,
 #bluetooth,
+#cpu,
+#memory,
+#custom-lang-state,
 #mode {
         padding-left: 4px;
         padding-right: 6px;
@@ -136,7 +143,7 @@ button:hover {
         margin-top: 5.2px;
         margin-bottom: 5.2px;
         padding-left: 4px;
-        background: transparent;
+        background-color: transparent;
         border: 0px;
         border-style: solid;
         border-color: transparent;
@@ -219,6 +226,31 @@ label:focus {
         background-color: #000000;
 }
 
+#cpu {
+        border-radius: 5;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        background-color: transparent;
+        margin-bottom: 0px;
+        color: @cpu_text_color;
+}
+
+#memory {
+        border-radius: 5;
+        /* border-top-right-radius: 8px; */
+        /* border-bottom-right-radius: 8px; */
+        background-color: transparent;
+        margin-bottom: 0px;
+        color: @mem_text_color;
+}
+
+#custom-lang-state {
+        border-radius: 5;
+        background-color: transparent;
+        margin-bottom: 0px;
+        color: @clock_text_color;
+
+}
 
 #backlight {
         /*	margin: 3px 0px 3px 0px; */
@@ -285,8 +317,7 @@ label:focus {
 }
 
 #tray {
-        margin-left: 2px;
-        margin-right: 2px;
+        margin-right: 4px;
         margin-top: 4px;
         margin-bottom: 4px;
         padding-bottom: 0px;
@@ -446,19 +477,22 @@ label:focus {
         background: @hover_transparent;
 }
 
+#custom-lang-state:hover,
+#cpu:hover,
+#memory:hover,
 #wireplumber:hover,
 #backlight:hover,
 #battery:hover,
 #network:hover,
 #bluetooth:hover {
         border-bottom: 2.5px solid transparent;
-        background: @def_hover_bg;
+        background-color: @def_hover_bg;
 }
 
 #mpris:hover,
 #clock:hover {
         border-bottom: 2.5px solid transparent;
-        background: @hover_transparent;
+        background-color: @hover_transparent;
 }
 
 
@@ -475,10 +509,23 @@ label:focus {
         padding-left: 0px;
         padding-right: 0px;
         color: #C4C4C4;
-        background-color: @def_background;
         border-radius: 8px;
+        background-color: @def_background;
 
 }
+
+#HardwareInfo {
+        margin-right: 2px;
+        margin-left: 2px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding-left: 0px;
+        padding-right: 0px;
+        border-radius: 8px;
+        color: #C4C4C4;
+        background-color: @def_background;
+}
+
 
 #statusInfo {
         margin-right: 0px;
@@ -499,6 +546,6 @@ label:focus {
 }
 #menuOutside:hover {
         /* border-radius: 25px; */
-        background: @def_background;
+        background-color: @def_background;
 }
 

@@ -39,6 +39,12 @@
 /*Back light*/
 @define-color backlight_color #bb9af7;
 
+/* CPU */
+@define-color cpu_text_color  #b8e478;
+
+/* Memory */
+@define-color mem_text_color #e8b28d;
+
 /* Battery */
 @define-color battery_def #fff;
 @define-color battery_charging #4fd6be;

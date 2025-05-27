@@ -32,8 +32,8 @@
         ],
         "modules-right": [
                 "group/systemInfo",
-                "tray",
-                "custom/power"
+                "group/HardwareInfo",
+                "group/systemGroups"
         ],
 
         // ===================== Groups ==============================//
@@ -64,23 +64,32 @@
         "group/systemGroups": {
                 "orientation": "horizontal",
                 "drawer": {
-                       "transition-duration": 500,
+                       "transition-duration": 900,
                        "children-class": "childs",
-                       "transition-left-to-right": true
+                       "transition-left-to-right": false
                  },
                 "modules": [
-                        "group/systemInfo",
-                        "tray"
+                        "custom/power"
+                        // "tray"
                 ]
         },
-
+       
         "group/systemInfo": {
                 "orientation": "horizontal",
                 "modules": [
                         "network",
                         "bluetooth",
                         "wireplumber",
-                        "backlight",
+                        "backlight"
+                        // "group/powerInfo"
+                ]
+        },
+        "group/HardwareInfo": {
+                "orientation": "horizontal",
+                "modules": [
+                        "cpu",
+                        "memory",
+                        "custom/lang-state",
                         "group/powerInfo"
                 ]
         },
@@ -95,13 +104,13 @@
 
         "group/powerInfo": {
                 "orientation": "horizontal",
-                 "drawer": {
+                "drawer": {
                         "transition-duration": 500,
                         "children-class": "childs",
                         "transition-left-to-right": false
-                 },
-                 "modules": [
-                         "battery"
+                },
+                "modules": [
+                        "battery"
                 ]
         },
         
@@ -111,6 +120,7 @@
                 "format": "󰣇",
                 "tooltip": false
         },
+
         "hyprland/window": {
                 "max-length": 30,
                 "icon": true,
@@ -130,6 +140,7 @@
                 },
                 "on-click-right": "rofi -show window"
         },
+
         "wlr/taskbar": {
                 "format": "{icon}",
                 "tooltip-format": "{title}",
@@ -172,6 +183,7 @@
                         "*": [ 1,2,3,4,5]
                 }
         },
+
         "privacy": {
                 "icon-spacing": 0,
                 "icon-size": 12,
@@ -194,6 +206,7 @@
                         }
                 ]       
         },
+
         "idle_inhibitor": {
                 "format": "{icon} ",
                 "tooltip": true,
@@ -205,6 +218,7 @@
                         // "deactivated": ""
                 }
         },
+
         "mpris": {
                 "format": "{player_icon} Playing" ,
                 "tooltip-format": "{status_icon} {dynamic}",
@@ -223,8 +237,9 @@
                 }
                 // "ignored-players": ["firefox"]
         },
+
         "clock" : {
-                "format": "{:%H:%M %Z・%d.%m}",
+                "format": "{:%H:%M %Z}",
                 "format-alt": "{:%a, %d. %b %Y}",
                 "locale": "de_DE.UTF-8",
                 "tooltip-format": "<span size='12pt'>{calendar}</span>",
@@ -288,10 +303,11 @@
                         ""
                 ]
         },
+
         "network": {
                 // "format-wifi": "{essid}   ({signalStrength}%)",
                 "format-wifi": "{essid} {icon}",
-                "format-ethernet": "{ifname} 󰈀",
+                "format-ethernet": "󰈀 {ifname}",
                 "format-linked": "{ifname} 󰲜 (No IP)",
                 "format-disconnected": "Disconnected ",
                 "format-disabled": "Disabled ",
@@ -313,6 +329,7 @@
                 "on-click-right": "nm-connection-editor"
                 // "on-click-right": "iwgtk"
         },
+
         "wireplumber": {
                 "scroll-step": 1, // %, can be a float
                 "format": "{volume}% {icon}",
@@ -339,10 +356,12 @@
                 "max-volume": "100%",
                 "tooltip-format": "{node_name}\nVolume: {volume}%  "
         },
+
         "tray": {
                 "icon-size": 12,
                 "spacing": 5
         },
+
         "backlight": {
                 // "device": "acpi_video1",
                 "format": "{percent}% {icon}",
@@ -353,12 +372,14 @@
                 "on-scroll-up": "/home/schlau/.config/hypr/scripts/backlight.sh up",
                 "on-scroll-down": "/home/schlau/.config/hypr/scripts/backlight.sh down"
         },
+
         "custom/power": {
                 "format": "",
                 "tooltip": true,
                 "tooltip-format": "Shutdown",
                 "on-click": "wlogout"
         },
+
         "bluetooth": {
                 "format": "{status} ",
                 "format-disabled": "",
@@ -371,14 +392,33 @@
                 "on-click-right": "uwsm app overskride",
                 "on-click": "uwsm app /home/schlau/.config/hypr/scripts/bluetooth.sh"
         },
+
+        // Hardware Information
+        "cpu": {
+                "interval": 1,
+                "format": " {icon0}{icon1}{icon2}{usage:>2}%",
+                "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        },
+
+        "memory": {
+                "interval": 30,
+                "format": "  {}%",
+                "max-length": 10
+        },
+
         "upower": {
                 "show-icon": true,
                 "icon-size": 18,
                 "hide-if-empty": false,
                 "tooltip": true,
                 "tooltip-spacing": 20
+        },
+        "custom/lang-state": {
+                "exec": "$HOME/.config/hypr/scripts/keyboardstate.sh get",
+                "on-click": "$HOME/.config/hypr/scripts/keyboardstate.sh change",
+                "interval": 1,
+                "format": "{}"
+
         }
-
-
 }
 
