@@ -70,7 +70,8 @@
 @define-color workspaces_button_bg transparent;
 
 /* Colour for active button workspace*/
-@define-color workspace_active_button_bg rgba(91,50,86,1);
+/* @define-color workspace_active_button_bg rgba(91,50,86,1); */
+@define-color workspace_active_button_bg rgba(255,255,255,0.8);
 
 /* Workspace button border */
 @define-color waybar_border rgba(144,177,177,0.2);
