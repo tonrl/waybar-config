@@ -12,7 +12,8 @@
 //==========================================================================//
 
 {
-        "layer": "middle",
+        // "layer": "overlay",
+        "layer": "top",
         "position": "top",
         "height": 34,
         "spacing": 2,
@@ -79,6 +80,7 @@
                 "modules": [
                         "network",
                         "bluetooth",
+                        "custom/notification",
                         "wireplumber",
                         "backlight"
                         // "group/powerInfo"
@@ -270,61 +272,75 @@
 
         // ====================== Module Right ============================//
         "battery": {
-                "format": "{capacity}% {icon}",
+                "format": "{icon} {capacity}%",
                 "interval": 10,
-                "format-charging": "{capacity}% ",
-                "format-plugged": "{capacity}% ",
-                "format-warning": "{capacity}% {icon}",
-                "format-critical": "{capacity}% ",
                 "format-alt": "{time} {icon}",
-                "format-plugged-alt": "{time} {icon}",
-                "format-charging-alt": "{time} {icon}",
                 // "tooltip-format": "Akku bei {capacity}%",
                 // "full-at": 85,
                 "states": {
                         "warning": 30,
                         "critical": 15
                 },
-                "format-icons": [
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
-                ]
+                "format-icons": {
+                        "default": [
+                                "󰁺",
+                                "󰁻",
+                                "󰁼",
+                                "󰁽",
+                                "󰁾",
+                                "󰁿",
+                                "󰂀",
+                                "󰂁",
+                                "󰂂",
+                                "󰁹"
+                        ],
+                        "plugged": [
+                                "󱟢"
+                        ],
+                        "critical" : [
+                               "󱟩"
+                        ],
+                        "charging": [
+                                "󰢟",
+                                "󰢜",
+                                "󰂆",
+                                "󰂇",
+                                "󰂈",
+                                "󰢝",
+                                "󰂉",
+                                "󰢞",
+                                "󰂊",
+                                "󰂋",
+                                "󰂅"
+                        ]
+                }
         },
 
         "network": {
                 // "format-wifi": "{essid}   ({signalStrength}%)",
-                "format-wifi": "{essid} {icon}",
-                "format-ethernet": "󰈀 {ifname}",
+                "format-wifi": "{icon} {essid}",
+                "format-ethernet": "{icon} {ifname}",
                 "format-linked": "{ifname} 󰲜 (No IP)",
-                "format-disconnected": "Disconnected ",
-                "format-disabled": "Disabled ",
-                "format-alt": "{ifname}: {ipaddr}/{cidr}",
-                "tooltip-format": "{ifname}: {ipaddr}",
-                "tooltip-format-wifi": "{icon} ({signalStrength}%) {ipaddr}",
-                "tooltip-format-ethernet": "󰈀 {ipaddr}",
-                "tooltip-format-disconnected": "Disconnected",
-                "tooltip-format-disabled": "Disconnected",
+                "format-disconnected": "  Disconnected",
+                "format-disabled": "  Disabled",
+                // "format-alt": "{ifname}: {ipaddr}/{cidr}",
+                "tooltip-format": "{icon} {ifname}: {ipaddr}",
+                "tooltip-format-wifi": "{icon} {ipaddr} ({signalStrength}%)",
+                "tooltip-format-disconnected": "  Disconnected",
+                "tooltip-format-disabled": "  Disabled",
                 "family": "ipv4",
-                "format-icons": [
-                        "󰤯",
-                        "󰤟",
-                        "󰤢",
-                        "󰤢",
-                        "󰤨"
-                ],
+                "format-icons": {
+                        "wifi": [
+                                "󰤯 ",
+                                "󰤟 ",
+                                "󰤢 ",
+                                "󰤥 ",
+                                "󰤨 "
+                        ],
+                        "ethernet": [
+                                "󰈀"
+                        ]
+                },
                 "max-length": 50,
                 "on-click-right": "nm-connection-editor"
                 // "on-click-right": "iwgtk"
@@ -335,7 +351,7 @@
                 "format": "{volume}% {icon}",
                 "format-bluetooth": "{volume}% {icon}",
                 "format-bluetooth-muted": "Aus {icon}󰂲",
-                "format-muted": "Aus 󰖁",
+                "format-muted": "Aus ",
                 "format-source": " {volume}% ",
                 "format-source-muted": "",
                 "format-icons": {
@@ -345,7 +361,7 @@
                         "phone": " ",
                         "portable": " ",
                         "car": " ",
-                        // "default": ["󰸊","󱡕","󰖌"]
+                        // "default": ["󰕿","󰖀","󰕾"]
                         "default": ["", "", "", "", "", "", "", "", ""]
 
                 },
@@ -354,7 +370,7 @@
                 "on-scroll-up": "/home/schlau/.config/hypr/scripts/volume.sh up",
                 "on-scroll-down": "/home/schlau/.config/hypr/scripts/volume.sh down",
                 "max-volume": "100%",
-                "tooltip-format": "{node_name}\nVolume: {volume}%  "
+                "tooltip-format": "{node_name}\nVolume: {volume}% {icon}"
         },
 
         "tray": {
@@ -382,6 +398,8 @@
 
         "bluetooth": {
                 "format": "{status} ",
+                "format-on": "An ",
+                "format-off": "Aus 󰂲",
                 "format-disabled": "",
                 "format-no-controller": "",
                 "format-connected": "{device_alias} ",
@@ -419,6 +437,26 @@
                 "interval": 1,
                 "format": "{}"
 
+        },
+        "custom/notification": {
+                "tooltip": false,
+                "format": "{icon}",
+                "format-icons": {
+                        "notification": "<span foreground='red'><sup></sup></span>",
+                        "none": "<span foreground='white'><sup> </sup></span>", 
+                        "dnd-notification": "<span foreground='red'><sup></sup></span>",
+                        "dnd-none": "<span foreground='white'><sup> </sup></span>",
+                        "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+                        "inhibited-none": "",
+                        "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+                        "dnd-inhibited-none": ""
+                },
+                "return-type": "json",
+                "exec-if": "which swaync-client",
+                "exec": "swaync-client -swb",
+                "on-click": "swaync-client -t -sw",
+                "on-click-right": "swaync-client -d -sw",
+                "escape": true
         }
 }
 
