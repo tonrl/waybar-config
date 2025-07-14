@@ -259,9 +259,9 @@
                         }
                 },
                 "timezones": [
-                        "",
-                        "Australia/South",
-                        "America/New_York"
+                        ""
+                        // "Australia/South",
+                        // "America/New_York"
                 ],
                 "actions": {
                         "on-click-right": "mode",
@@ -298,7 +298,7 @@
                                 "󱟢"
                         ],
                         "critical" : [
-                               "󱟩"
+                                "󱟩"
                         ],
                         "charging": [
                                 "󰢟",
@@ -318,14 +318,14 @@
 
         "network": {
                 // "format-wifi": "{essid}   ({signalStrength}%)",
-                "format-wifi": "{icon} {essid}",
-                "format-ethernet": "{icon} {ifname}",
+                "format-wifi": "{essid} {icon} ({ipaddr})",
+                "format-ethernet": "{ifname} {icon} ({ipaddr})",
                 "format-linked": "{ifname} 󰲜 (No IP)",
                 "format-disconnected": "  Disconnected",
                 "format-disabled": "  Disabled",
                 // "format-alt": "{ifname}: {ipaddr}/{cidr}",
-                "tooltip-format": "{icon} {ifname}: {ipaddr}",
-                "tooltip-format-wifi": "{icon} {ipaddr} ({signalStrength}%)",
+                "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+                "tooltip-format-wifi": "{ipaddr} [{frequency}GHz] ({signalStrength}%)",
                 "tooltip-format-disconnected": "  Disconnected",
                 "tooltip-format-disabled": "  Disabled",
                 "family": "ipv4",
@@ -338,7 +338,7 @@
                                 "󰤨 "
                         ],
                         "ethernet": [
-                                "󰈀"
+                                "󰱓"
                         ]
                 },
                 "max-length": 50,
