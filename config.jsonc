@@ -343,7 +343,6 @@
                 },
                 "max-length": 50,
                 "on-click-right": "nm-connection-editor"
-                // "on-click-right": "iwgtk"
         },
 
         "wireplumber": {
